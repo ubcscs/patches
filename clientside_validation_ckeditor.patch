@@ -1,0 +1,13 @@
+diff --git a/clientside_validation.module b/clientside_validation.module
+index f0a69de..630fad1 100644
+--- a/clientside_validation.module
++++ b/clientside_validation.module
+@@ -35,7 +35,7 @@ function clientside_validation_js_alter(&$javascript) {
+     $javascript['settings']['data'][] = $clientside_validation_settings;
+     $scripts = array_keys($javascript);
+     foreach ($scripts as $script) {
+-      if (strpos($script, 'ckeditor') !== FALSE) {
++      if (substr($script, -12) == '/ckeditor.js') {
+         $javascript[$path . '/clientside_validation.ckeditor.js'] = $javascript[$path. '/clientside_validation.js'];
+         $javascript[$path . '/clientside_validation.ckeditor.js']['weight'] -= 0.001;
+         $javascript[$path . '/clientside_validation.ckeditor.js']['data'] = $path . '/clientside_validation.ckeditor.js';
